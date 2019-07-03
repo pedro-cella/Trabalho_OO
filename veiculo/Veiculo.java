@@ -81,29 +81,15 @@ public void adComb(Combustivel tmpComb) {
 }
 
 public void imprimedados() {
-	for(int i = 0; i< combustiveis.size(); i++) {
-		System.out.println("Tipo de Combustive " + combustiveis.get(i).getTipo_combustivel());
-		System.out.println("Tipo de Abastecimento " + combustiveis.get(i).getData_abastecimento());
-		System.out.println("Tipo de Kilomentragem " + combustiveis.get(i).getKilometragem());
-		System.out.println("Tipo de Valor Total " + combustiveis.get(i).getValor_total());
-		System.out.println("Tipo de Abastecimento " + combustiveis.get(i).getTipo_abastecimento());
-		System.out.println("Tipo de VCombustive " + combustiveis.get(i).getValor_combustivel());
+	for(int i = 0; i < combustiveis.size(); i++) {
+		JOptionPane.showMessageDialog(null, "Tipo de Combustivel " + combustiveis.get(i).getTipo_combustivel()
+											+ "\nTipo de Abastecimento " + combustiveis.get(i).getData_abastecimento()
+											+ "\nTipo de Kilometragem " + combustiveis.get(i).getKilometragem()
+											+ "\nTipo de Valor Total " + combustiveis.get(i).getValor_total()
+											+ "\nTipo de Abastecimento " + combustiveis.get(i).getTipo_abastecimento()
+											+"\nTipo de VCombustive " + combustiveis.get(i).getValor_combustivel());
 	}
 	
 }
 
-
-public void cadastrarVeiculo() {
-	Veiculo veiculo = new Veiculo();
-	veiculo.setMarca(JOptionPane.showInputDialog("Digite a marca: \n"));
-	veiculo.setModelo(JOptionPane.showInputDialog("Digite o modelo: \n"));
-	veiculo.setAno_fabricacao(Integer.parseInt(JOptionPane.showInputDialog("Digite o ano de fabricacao: \n")));
-	veiculo.setAno_modelo(Integer.parseInt(JOptionPane.showInputDialog("Digite o ano do modelo: \n")));
-	veiculo.setMotorizacao(Float.parseFloat(JOptionPane.showInputDialog("Digite a motorizacao: \n")));
-	veiculo.setCombustivel(JOptionPane.showInputDialog("Digite o tipo de combustivel: \n"));
-	veiculo.setCor(JOptionPane.showInputDialog("Digite a cor: \n"));
-	veiculo.setPlaca(JOptionPane.showInputDialog("Digite a placa: \n"));
-	veiculo.setRenavam(JOptionPane.showInputDialog("Digite o renavam: \n"));
-	JOptionPane.showMessageDialog(null, "Carro cadastrado !");
-}
 }
