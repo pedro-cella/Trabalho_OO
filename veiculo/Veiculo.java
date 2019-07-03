@@ -81,7 +81,7 @@ public void adComb(Combustivel tmpComb) {
 }
 
 public void imprimedados() {
-	for(int i =0; i< combustiveis.size(); i++) {
+	for(int i = 0; i< combustiveis.size(); i++) {
 		System.out.println("Tipo de Combustive " + combustiveis.get(i).getTipo_combustivel());
 		System.out.println("Tipo de Abastecimento " + combustiveis.get(i).getData_abastecimento());
 		System.out.println("Tipo de Kilomentragem " + combustiveis.get(i).getKilometragem());
