@@ -1,5 +1,4 @@
 package manutencao;
-
 public class Combustivel {
 protected String data_abastecimento;
 protected String tipo_combustivel;
