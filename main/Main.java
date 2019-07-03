@@ -1,6 +1,5 @@
 package main;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 import manutencao.Combustivel;
 import manutencao.Despesas;
 import manutencao.Manutencao;
@@ -10,11 +9,10 @@ import java.util.ArrayList;
 public class Main {
 
 	public static void main(String[] args) {
-		int opcao, N, i = 0, escolha, contador = 0;
+		int opcao, N, i = 0, escolha;
 		String quantidade, tipo, numero;
 		ArrayList<Veiculo> listadeVeiculos = new ArrayList<>();
 		ArrayList<Combustivel> listadeAbastecimento = new ArrayList<>();
-		ArrayList<Integer> quantidadedeAbastecimentos = new ArrayList<>();
 		ArrayList<Despesas> listadeDespesas = new ArrayList<>();
 		ArrayList<Manutencao> listadeManutencoes = new ArrayList<>();
 		JOptionPane.showMessageDialog(null, "Seja bem vindo ao Carrorama!\n");
@@ -54,15 +52,14 @@ public class Main {
 					numero = JOptionPane.showInputDialog("Para qual deles voce deseja registrar o abastecimento: \n");
 					i = Integer.parseInt(numero);
 					Combustivel abastecimento = new Combustivel();
-					contador++;
 					abastecimento.setData_abastecimento(JOptionPane.showInputDialog("Data do abastecimento: \n"));
 					abastecimento.setKilometragem(Integer.parseInt(JOptionPane.showInputDialog("Kilometragem atual: ")));
 					abastecimento.setTipo_abastecimento(JOptionPane.showInputDialog("Qual o tipo de abastecimento: \n1- Tanque-Cheio\n2- Tanque-Nao-Cheio\n"));
 					abastecimento.setTipo_combustivel(listadeVeiculos.get(i).getCombustivel());
 					abastecimento.setValor_combustivel(Float.parseFloat(JOptionPane.showInputDialog("Preco da gasolina: \n")));
 					abastecimento.setValor_total(Float.parseFloat(JOptionPane.showInputDialog("Valor total do abastecimento: \n")));
-					listadeAbastecimento.add(abastecimento);
-					quantidadedeAbastecimentos.add(contador);
+					listadeVeiculos.get(i).adComb(abastecimento);
+					//listadeVeiculos.get(listadeVeiculos.size() - 1).adComb(abastecimento);
 					JOptionPane.showMessageDialog(null, "Abastecimento cadastrado !");
 					break;
 				case 3:
@@ -89,13 +86,8 @@ public class Main {
 				case 4:
 					JOptionPane.showMessageDialog(null, "Existem " + listadeVeiculos.size() + "carros cadastrados\n");
 					numero = JOptionPane.showInputDialog("De qual deles voce deseja o relatorio: \n");
-					i = Integer.parseInt(numero) + 1;
-					for (int j = 0; j < quantidadedeAbastecimentos.get(i); j++) {
-						JOptionPane.showMessageDialog(null, "Veiculo " + i + "\nAbastecimentos: " + j
-								+ "\nData: " + listadeAbastecimento.get(i).getData_abastecimento() 
-								+ "\nCombustivel: " + listadeAbastecimento.get(i).getTipo_combustivel()
-								+ "\nValor Total: " + listadeAbastecimento.get(i).getValor_total());
-					}
+					i = Integer.parseInt(numero);
+					listadeVeiculos.get(i).imprimedados();
 					break;
 				}
 		}while(opcao != 6);
