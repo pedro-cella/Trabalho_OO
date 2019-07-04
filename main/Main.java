@@ -7,6 +7,7 @@ import manutencao.Multa;
 import manutencao.Seguro;
 import manutencao.Manutencao;
 import veiculo.Veiculo;
+import excessoes.Excessoes;
 import java.util.ArrayList;
 
 public class Main {
@@ -58,7 +59,7 @@ public class Main {
 					abastecimento.setTipo_combustivel(listadeVeiculos.get(i).getCombustivel());
 					abastecimento.setValor_combustivel(Float.parseFloat(JOptionPane.showInputDialog("Preco da gasolina: \n")));
 					abastecimento.setValor_total(Float.parseFloat(JOptionPane.showInputDialog("Valor total do abastecimento: \n")));
-					listadeVeiculos.get(i).adComb(abastecimento);
+					listadeVeiculos.get(i).adDes(abastecimento);
 					JOptionPane.showMessageDialog(null, "Abastecimento cadastrado !");
 					break;
 				case 3:
@@ -67,7 +68,7 @@ public class Main {
 					switch(escolha) {
 						case 1:
 							String selecione = JOptionPane.showInputDialog("Qual tipo de despesa gostaria de cadastrar: "
-																			+ "1- Imposto"
+																			+ "\n1- Imposto"
 																			+ "\n2- Multa"
 																			+ "\n3- Financiamento"
 																			+ "\n4- Seguro");
@@ -82,40 +83,40 @@ public class Main {
 									imposto.setAno_despesa(JOptionPane.showInputDialog("Ano despesa: \n"));
 									imposto.setCategoria(JOptionPane.showInputDialog("Categoria: \n"));
 									imposto.setValor_despesa(Double.parseDouble(JOptionPane.showInputDialog("Valor da despesa: ")));
-									listadeVeiculos.get(i).adImp(imposto);
+									listadeVeiculos.get(i).adDes(imposto);
 									break;
 								case 2:
 									JOptionPane.showMessageDialog(null, "Existem " + listadeVeiculos.size() + " carros cadastrados\n");
-									numero = JOptionPane.showInputDialog("Para qual deles voce deseja registrar o imposto: \n");
+									numero = JOptionPane.showInputDialog("Para qual deles voce deseja registrar a multa: \n");
 									i = Integer.parseInt(numero);
 									Multa multa = new Multa();
 									multa.setNome_despesa(JOptionPane.showInputDialog("Nome da despesa: \n"));
 									multa.setAno_despesa(JOptionPane.showInputDialog("Ano despesa: \n"));
 									multa.setCategoria(JOptionPane.showInputDialog("Categoria: \n"));
 									multa.setValor_despesa(Double.parseDouble(JOptionPane.showInputDialog("Valor da despesa: ")));
-									listadeVeiculos.get(i).adMult(multa);
+									listadeVeiculos.get(i).adDes(multa);
 									break;
 								case 3:
 									JOptionPane.showMessageDialog(null, "Existem " + listadeVeiculos.size() + " carros cadastrados\n");
-									numero = JOptionPane.showInputDialog("Para qual deles voce deseja registrar o imposto: \n");
+									numero = JOptionPane.showInputDialog("Para qual deles voce deseja registrar o financiamento: \n");
 									i = Integer.parseInt(numero);
 									Financiamento financiamento= new Financiamento();
 									financiamento.setNome_despesa(JOptionPane.showInputDialog("Nome da despesa: \n"));
 									financiamento.setAno_despesa(JOptionPane.showInputDialog("Ano despesa: \n"));
 									financiamento.setCategoria(JOptionPane.showInputDialog("Categoria: \n"));
 									financiamento.setValor_despesa(Double.parseDouble(JOptionPane.showInputDialog("Valor da despesa: ")));
-									listadeVeiculos.get(i).adFin(financiamento);
+									listadeVeiculos.get(i).adDes(financiamento);
 									break;
 								case 4:
 									JOptionPane.showMessageDialog(null, "Existem " + listadeVeiculos.size() + " carros cadastrados\n");
-									numero = JOptionPane.showInputDialog("Para qual deles voce deseja registrar a despesa: \n");
+									numero = JOptionPane.showInputDialog("Para qual deles voce deseja registrar o seguro: \n");
 									i = Integer.parseInt(numero);
 									Seguro seguro = new Seguro();
 									seguro.setNome_despesa(JOptionPane.showInputDialog("Nome da despesa: \n"));
 									seguro.setAno_despesa(JOptionPane.showInputDialog("Ano despesa: \n"));
 									seguro.setCategoria(JOptionPane.showInputDialog("Categoria: \n"));
 									seguro.setValor_despesa(Double.parseDouble(JOptionPane.showInputDialog("Valor da despesa: ")));
-									listadeVeiculos.get(i).adSeg(seguro);
+									listadeVeiculos.get(i).adDes(seguro);
 									break;
 							}
 							break;
@@ -126,13 +127,13 @@ public class Main {
 							Manutencao manutencao = new Manutencao();
 							manutencao.setNome_despesa(JOptionPane.showInputDialog("Nome: \n"));
 							manutencao.setValor_despesa(Double.parseDouble(JOptionPane.showInputDialog("Valor da manutencao: \n")));
-							listadeVeiculos.get(i).adManut(manutencao);
+							listadeVeiculos.get(i).adDes(manutencao);
 							
 							break;
 					}
 					break;
 				case 4:
-					JOptionPane.showMessageDialog(null, "Existem " + listadeVeiculos.size() + "carros cadastrados\n");
+					JOptionPane.showMessageDialog(null, "Existem " + listadeVeiculos.size() + " carros cadastrados\n");
 					numero = JOptionPane.showInputDialog("De qual deles voce deseja o relatorio: \n");
 					i = Integer.parseInt(numero);
 					listadeVeiculos.get(i).imprimedados();
