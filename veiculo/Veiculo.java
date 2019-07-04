@@ -7,8 +7,9 @@ import manutencao.Multa;
 import manutencao.Financiamento;
 import manutencao.Manutencao;
 import manutencao.Seguro;
+import excessoes.Excessoes;
 
-public class Veiculo {
+public class Veiculo extends Excessoes{
 private ArrayList<Combustivel> combustiveis;
 private ArrayList<Imposto> impostos;
 private ArrayList<Multa> multas;
@@ -85,44 +86,47 @@ public void setPlaca(String placa) {
 public String getRenavam() {
 	return renavam;
 }
+
 public void setRenavam(String renavam) {
 	this.renavam = renavam;
 }
 
-public void adComb(Combustivel tmpComb) {
+//Possivel Polimorfismo- Inicio
+public void adDes(Combustivel tmpComb) {
 	combustiveis.add(tmpComb);
 }
 
-public void adImp(Imposto tmpImp) {
+public void adDes(Imposto tmpImp) {
 	impostos.add(tmpImp);
 }
 
-public void adMult(Multa tmpMult) {
+public void adDes(Multa tmpMult) {
 	multas.add(tmpMult);
 }
 
-public void adFin(Financiamento tmpFin) {
+public void adDes(Financiamento tmpFin) {
 	financiamentos.add(tmpFin);
 }
 
-public void adSeg(Seguro tmpSeg) {
+public void adDes(Seguro tmpSeg) {
 	seguros.add(tmpSeg);
 }
 
-public void adManut(Manutencao tmpManut) {
+public void adDes(Manutencao tmpManut) {
 	manutencoes.add(tmpManut);
 }
+//- Fim
 
 public void imprimedados() {
 	if(combustiveis.size() == 0) {
 		JOptionPane.showMessageDialog(null, combustiveis.size() + " abastecimentos cadastrados");
 	}else {
 		for(int i = 0; i < combustiveis.size(); i++) {
-			JOptionPane.showMessageDialog(null, "Tipo de Combustivel " + combustiveis.get(i).getTipo_combustivel()
-												+ "\nData do Abastecimento " + combustiveis.get(i).getData_abastecimento()
-												+ "\nKilometragem " + combustiveis.get(i).getKilometragem()
-												+ "\nValor Total " + combustiveis.get(i).getValor_total()
-												+ "\nTipo do Abastecimento " + combustiveis.get(i).getTipo_abastecimento()
+			JOptionPane.showMessageDialog(null, "Tipo de Combustivel: " + combustiveis.get(i).getTipo_combustivel()
+												+ "\nData do Abastecimento: " + combustiveis.get(i).getData_abastecimento()
+												+ "\nKilometragem: " + combustiveis.get(i).getKilometragem()
+												+ "\nValor Total: " + combustiveis.get(i).getValor_total()
+												+ "\nTipo do Abastecimento: " + combustiveis.get(i).getTipo_abastecimento()
 												+"\nPreco da gasolina: " + combustiveis.get(i).getValor_combustivel());
 		}
 	}
