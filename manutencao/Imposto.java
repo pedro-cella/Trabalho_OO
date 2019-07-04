@@ -1,19 +1,9 @@
 package manutencao;
 
-public class Manutencao extends Despesas {
+public class Imposto extends Despesas{
 
-public int odometro;
-
-public Manutencao(){
-	
-}
-
-public int getOdometro() {
-	return odometro;
-}
-
-public void setOdometro(int odometro) {
-	this.odometro = odometro;
+public Imposto(){
+		
 }
 
 public String getNome_despesa() {

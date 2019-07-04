@@ -1,5 +1,5 @@
 package manutencao;
-public class Combustivel {
+public class Combustivel extends Despesas{
 protected String data_abastecimento;
 protected String tipo_combustivel;
 protected int kilometragem;
