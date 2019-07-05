@@ -7,7 +7,6 @@ import manutencao.Multa;
 import manutencao.Seguro;
 import manutencao.Manutencao;
 import veiculo.Veiculo;
-import excessoes.Excessoes;
 import java.util.ArrayList;
 
 public class Main {
@@ -137,6 +136,8 @@ public class Main {
 					numero = JOptionPane.showInputDialog("De qual deles voce deseja o relatorio: \n");
 					i = Integer.parseInt(numero);
 					listadeVeiculos.get(i).imprimedados();
+					break;
+				case 5:
 					break;
 				}
 		}while(opcao != 6);
