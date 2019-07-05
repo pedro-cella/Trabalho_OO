@@ -59,6 +59,4 @@ public void setTipo_abastecimento(String tipo_abastecimento) {
 	this.tipo_abastecimento = tipo_abastecimento;
 }
 
-
-
 }
