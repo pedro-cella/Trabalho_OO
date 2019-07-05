@@ -7,9 +7,8 @@ import manutencao.Multa;
 import manutencao.Financiamento;
 import manutencao.Manutencao;
 import manutencao.Seguro;
-import excessoes.Excessoes;
 
-public class Veiculo extends Excessoes{
+public class Veiculo{
 private ArrayList<Combustivel> combustiveis;
 private ArrayList<Imposto> impostos;
 private ArrayList<Multa> multas;
@@ -25,6 +24,7 @@ public String combustivel;
 private String cor;
 private String placa;
 private String renavam;
+private Combustivel comb;
 
 public Veiculo(){
 	this.combustiveis = new ArrayList<>();
@@ -127,12 +127,13 @@ public void imprimedados() {
 												+ "\nKilometragem: " + combustiveis.get(i).getKilometragem()
 												+ "\nValor Total: " + combustiveis.get(i).getValor_total()
 												+ "\nTipo do Abastecimento: " + combustiveis.get(i).getTipo_abastecimento()
-												+"\nPreco da gasolina: " + combustiveis.get(i).getValor_combustivel());
+												+ "\nPreco da gasolina: " + combustiveis.get(i).getValor_combustivel()
+												+ "\nKilometragem rodada: "  + (combustiveis.get(combustiveis.size() - 1).getKilometragem() - combustiveis.get(i).getKilometragem())); //<--AINDA NAO DA 100% CERTO
 		}
 	}
 	
 	if(impostos.size() == 0) {
-		JOptionPane.showMessageDialog(null, combustiveis.size() + " impostos cadastrados\n");
+		JOptionPane.showMessageDialog(null, impostos.size() + " impostos cadastrados\n");
 	}else {
 		for(int i = 0; i < impostos.size(); i++) {
 			JOptionPane.showMessageDialog(null, "Nome da despesa: " + impostos.get(i).getNome_despesa()
