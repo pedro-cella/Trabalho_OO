@@ -121,15 +121,16 @@ public void imprimedados() {
 	if(combustiveis.size() == 0) {
 		JOptionPane.showMessageDialog(null, combustiveis.size() + " abastecimentos cadastrados");
 	}else {
-		for(int i = 0; i < combustiveis.size(); i++) {
+		int i;
+		for(i = 0; i < combustiveis.size(); i++) {
 			JOptionPane.showMessageDialog(null, "Tipo de Combustivel: " + combustiveis.get(i).getTipo_combustivel()
 												+ "\nData do Abastecimento: " + combustiveis.get(i).getData_abastecimento()
 												+ "\nKilometragem: " + combustiveis.get(i).getKilometragem()
 												+ "\nValor Total: " + combustiveis.get(i).getValor_total()
 												+ "\nTipo do Abastecimento: " + combustiveis.get(i).getTipo_abastecimento()
-												+ "\nPreco da gasolina: " + combustiveis.get(i).getValor_combustivel()
-												+ "\nKilometragem rodada: "  + (combustiveis.get(combustiveis.size() - 1).getKilometragem() - combustiveis.get(i).getKilometragem())); //<--AINDA NAO DA 100% CERTO
+												+ "\nPreco da gasolina: " + combustiveis.get(i).getValor_combustivel()); //<--AINDA NAO DA 100% CERTO
 		}
+		JOptionPane.showMessageDialog(null,"\nKilometragem rodada: "  + (combustiveis.get(combustiveis.size() - 1).getKilometragem() - combustiveis.get(combustiveis.size() - 2).getKilometragem()));
 	}
 	
 	if(impostos.size() == 0) {
