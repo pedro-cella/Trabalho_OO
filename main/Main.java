@@ -1,5 +1,7 @@
 package main;
 import javax.swing.JOptionPane;
+
+import excessoes.DescricaoEmBrancoException;
 import manutencao.Combustivel;
 import manutencao.Imposto;
 import manutencao.Financiamento;
@@ -34,6 +36,7 @@ public class Main {
 					N = Integer.parseInt(quantidade);
 					for(i = 0; i < N; i++){
 						Veiculo veiculo = new Veiculo();
+						try {
 						veiculo.setMarca(JOptionPane.showInputDialog("Digite a marca: \n"));
 						veiculo.setModelo(JOptionPane.showInputDialog("Digite o modelo: \n"));
 						veiculo.setAno_fabricacao(Integer.parseInt(JOptionPane.showInputDialog("Digite o ano de fabricacao: \n")));
@@ -43,6 +46,9 @@ public class Main {
 						veiculo.setCor(JOptionPane.showInputDialog("Digite a cor: \n"));
 						veiculo.setPlaca(JOptionPane.showInputDialog("Digite a placa: \n"));
 						veiculo.setRenavam(JOptionPane.showInputDialog("Digite o renavam: \n"));
+						}catch(DescricaoEmBrancoException e) {
+							JOptionPane.showMessageDialog(null, "Voce deixou um dado em branco!");
+						}
 						listadeVeiculos.add(veiculo);
 						JOptionPane.showMessageDialog(null, "Carro cadastrado !");
 					}
@@ -138,6 +144,20 @@ public class Main {
 					listadeVeiculos.get(i).imprimedados();
 					break;
 				case 5:
+					JOptionPane.showMessageDialog(null, "Existem " + listadeVeiculos.size() + " carros cadastrados\n");
+					numero = JOptionPane.showInputDialog("De qual deles voce deseja o relatorio: \n");
+					i = Integer.parseInt(numero);
+					String selecione = JOptionPane.showInputDialog("Bem vindo ao relatorio de desempenho\nEscolha uma opcao para prossegir: "
+																	+ "\n1- Consumo do veiculo."
+																	+ "\n2- Custo do km rodado.");
+					int suaop = Integer.parseInt(selecione);
+					switch(suaop) {
+						case 1:
+							listadeVeiculos.get(i).consumo_veiculo();
+							break;
+						case 2:
+							listadeVeiculos.get(i).custo_km_rodado();e
+					}
 					break;
 				}
 		}while(opcao != 6);
