@@ -1,7 +1,10 @@
 package veiculo;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+
+import excessoes.CombustivelIncompativelException;
 import excessoes.DescricaoEmBrancoException;
+import excessoes.ValorInvalidoException;
 import manutencao.Combustivel;
 import manutencao.Imposto;
 import manutencao.Multa;
@@ -25,6 +28,7 @@ public String combustivel;
 private String cor;
 private String placa;
 private String renavam;
+private double totalDesp = 0; //variavel global
 public Combustivel c;
 
 public Veiculo(){
@@ -40,48 +44,76 @@ public String getMarca() {
 	return marca;
 }
 public void setMarca(String marca) throws DescricaoEmBrancoException{
+	if(marca == null)
+		throw new DescricaoEmBrancoException("Descrição em branco. Por favor insira um dado válido!");
 	this.marca = marca;
 }
 public String getModelo() {
 	return modelo;
 }
-public void setModelo(String modelo) throws DescricaoEmBrancoException {
+public void setModelo(String modelo) throws DescricaoEmBrancoException{
+	if(modelo == null)
+		throw new DescricaoEmBrancoException("Descrição em branco. Por favor insira um dado válido!");
 	this.modelo = modelo;
 }
 public int getAno_fabricacao() {
 	return ano_fabricacao;
 }
-public void setAno_fabricacao(int ano_fabricacao) throws DescricaoEmBrancoException{
-	this.ano_fabricacao = ano_fabricacao;
+public void setAno_fabricacao(int ano_fabricacao) throws ValorInvalidoException{
+	if(ano_fabricacao < 1950 || ano_fabricacao > 2020) {
+		throw new ValorInvalidoException("Ano de fabricação inválido!");
+	}else {
+		this.ano_fabricacao = ano_fabricacao;
+	}
 }
 public int getAno_modelo() {
 	return ano_modelo;
 }
-public void setAno_modelo(int ano_modelo) throws DescricaoEmBrancoException{
-	this.ano_modelo = ano_modelo;
+public void setAno_modelo(int ano_modelo) throws ValorInvalidoException{
+	if(ano_modelo < 1950 || ano_modelo > 2020) {
+		throw new ValorInvalidoException("Ano do modelo inválido!");
+	}else {
+		this.ano_modelo = ano_modelo;
+	}
 }
 public double getMotorizacao() {
 	return motorizacao;
 }
-public void setMotorizacao(double motorizacao) throws DescricaoEmBrancoException{
-	this.motorizacao = motorizacao;
+public void setMotorizacao(double motorizacao) throws ValorInvalidoException {
+	if(motorizacao < 1.0 || motorizacao > 8.1) {
+		throw new ValorInvalidoException("Motorização inválida!");
+	}else {
+		this.motorizacao = motorizacao;
+	}
 }
 public String getCombustivel() {
 	return combustivel;
 }
-public void setCombustivel(String combustivel) throws DescricaoEmBrancoException{
-	this.combustivel = combustivel;
+public void setCombustivel(String combustivel) throws DescricaoEmBrancoException,CombustivelIncompativelException {
+	if(combustivel == null)
+		throw new DescricaoEmBrancoException("Descrição em branco. Por favor insira um dado válido!");
+	else if(combustivel.equalsIgnoreCase("Álcool") ||
+			combustivel.equalsIgnoreCase("Diesel") ||
+			combustivel.equalsIgnoreCase("Gasolina") ||
+			combustivel.equalsIgnoreCase("Flex"))
+		this.combustivel = combustivel;
+	else
+	throw new CombustivelIncompativelException("Combustível inválido!");
 }
 public String getCor() {
 	return cor;
 }
-public void setCor(String cor) throws DescricaoEmBrancoException{
+public void setCor(String cor) throws DescricaoEmBrancoException {
+	if(cor == null)
+		throw new DescricaoEmBrancoException("Descrição em branco. Por favor insira um dado válido!");
 	this.cor = cor;
 }
 public String getPlaca() {
 	return placa;
 }
-public void setPlaca(String placa) throws DescricaoEmBrancoException{
+public void setPlaca(String placa) throws DescricaoEmBrancoException {
+	if(placa == null)
+		throw new DescricaoEmBrancoException("Descrição em branco. Por favor insira um dado válido!");
 	this.placa = placa;
 }
 public String getRenavam() {
@@ -89,6 +121,8 @@ public String getRenavam() {
 }
 
 public void setRenavam(String renavam) throws DescricaoEmBrancoException{
+	if(renavam == null)
+		throw new DescricaoEmBrancoException("Descrição em branco. Por favor insira um dado válido!");
 	this.renavam = renavam;
 }
 
@@ -205,19 +239,57 @@ public void consumo_veiculo() {//NAO IMPRIMI NADA, PULA O if
 }
 
 public void custo_km_rodado() {//ESTA DANDO PROBLEMA DE ACESSO NO ARRAY
+	
 	if(combustiveis.size() == 1) {
-		JOptionPane.showMessageDialog(null, "Custo do KM rodado " + (combustiveis.get(combustiveis.size() - 1).getValor_combustivel() + impostos.get(combustiveis.size() - 1).getValor_despesa()
-				  + multas.get(combustiveis.size() - 1).getValor_despesa() + financiamentos.get(combustiveis.size() - 1).getValor_despesa()
-				  + seguros.get(combustiveis.size() - 1).getValor_despesa() + manutencoes.get(combustiveis.size() - 1).getValor_despesa())/(combustiveis.get(combustiveis.size() - 1).getKilometragem()));
+	totalDesp = combustiveis.get(combustiveis.size() - 1).getValor_combustivel();
 	}else if(combustiveis.size() >= 2){
 		for(int i = 0; i < combustiveis.size(); i++){
-			JOptionPane.showMessageDialog(null, "Custo do KM rodado: " + 
-												(combustiveis.get(i).getValor_total()+impostos.get(i).getValor_despesa()
-												+ multas.get(i).getValor_despesa() + financiamentos.get(i).getValor_despesa()
-												+ seguros.get(i).getValor_despesa() + manutencoes.get(i).getValor_despesa())
-												/(combustiveis.get(combustiveis.size() - 1).getKilometragem() - combustiveis.get(combustiveis.size() - 2).getKilometragem()));
+			totalDesp += combustiveis.get(i).getValor_total();
 		}
 	}
+	
+	if(impostos.size() == 1) {
+		totalDesp += impostos.get(impostos.size() - 1).getValor_despesa();
+	}else if(impostos.size() >= 2){
+		for(int i = 0; i < impostos.size(); i++){
+			totalDesp += impostos.get(i).getValor_despesa();
+		}
+	}
+	
+	if(multas.size() == 1) {
+		totalDesp += multas.get(multas.size() - 1).getValor_despesa();
+	}else if(multas.size() >= 2){
+		for(int i = 0; i < multas.size(); i++){
+			totalDesp += multas.get(i).getValor_despesa();
+		}
+	}
+	
+	if(financiamentos.size() == 1) {
+		totalDesp += financiamentos.get(financiamentos.size() - 1).getValor_despesa();
+	}else if(financiamentos.size() >= 2){
+		for(int i = 0; i < financiamentos.size(); i++){
+			totalDesp += financiamentos.get(i).getValor_despesa();
+		}
+	}
+	
+	if(seguros.size() == 1) {
+		totalDesp += seguros.get(seguros.size() - 1).getValor_despesa();
+	}else if(seguros.size() >= 2){
+		for(int i = 0; i < seguros.size(); i++){
+			totalDesp += seguros.get(i).getValor_despesa();
+		}
+	}
+	if(manutencoes.size() == 1) {
+		totalDesp += manutencoes.get(manutencoes.size() - 1).getValor_despesa();
+	}else if(seguros.size() >= 2){
+		for(int i = 0; i < seguros.size(); i++){
+			totalDesp += seguros.get(i).getValor_despesa();
+		}
+	}
+	
+	JOptionPane.showMessageDialog(null, "Custo do KM rodade: "+ totalDesp /(combustiveis.get(combustiveis.size() - 1).getKilometragem() - combustiveis.get(combustiveis.size() - 2).getKilometragem()));
+	
+	
 }
 
 }
