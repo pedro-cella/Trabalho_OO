@@ -91,10 +91,8 @@ public String getCombustivel() {
 public void setCombustivel(String combustivel) throws DescricaoEmBrancoException,CombustivelIncompativelException {
 	if(combustivel.isEmpty()) {
 		throw new DescricaoEmBrancoException("Descrição em branco. Por favor insira um dado válido!");
-	}else if(combustivel == "Álcool" || combustivel == "Diesel" ||combustivel == "Gasolina" ||combustivel == "Flex"){
-		this.combustivel = combustivel;
 	}else {
-		throw new CombustivelIncompativelException("Combustível inválido!");
+		this.combustivel = combustivel;
 	}
 }
 public String getCor() {
@@ -224,9 +222,9 @@ public void imprimedados(){
 	}
 }
 
-public void consumo_veiculo() {//NAO IMPRIMI NADA, PULA O if
+public void consumo_veiculo() { //Problema de impressao corrigida
 	if(combustiveis.size()%2 == 0) {
-		if((combustiveis.get(combustiveis.size() - 2).getTipo_abastecimento() == "Tanque-Cheio") && (combustiveis.get(combustiveis.size() - 12).getTipo_abastecimento() == "Tanque-Cheio")) {
+		if(combustiveis.get(combustiveis.size() - 2).getTipo_abastecimento().equalsIgnoreCase("Tanque-Cheio") && (combustiveis.get(combustiveis.size() - 1).getTipo_abastecimento().equalsIgnoreCase("Tanque-Cheio"))) {
 			JOptionPane.showMessageDialog(null, "O consumo do seu veiculo e: "
 					+ ((combustiveis.get(combustiveis.size() - 1).getKilometragem() - combustiveis.get(combustiveis.size() - 2).getKilometragem())/(combustiveis.get(combustiveis.size() - 1).getValor_total()/combustiveis.get(combustiveis.size() - 1).getValor_combustivel())));
 		}
