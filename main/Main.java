@@ -94,10 +94,20 @@ public class Main {
 					numero = JOptionPane.showInputDialog("Para qual deles voce deseja registrar o abastecimento: \n");
 					i = Integer.parseInt(numero);
 					Combustivel abastecimento = new Combustivel();
-					abastecimento.setData_abastecimento(JOptionPane.showInputDialog("Data do abastecimento: \n"));
+					try {
+						abastecimento.setData_abastecimento(JOptionPane.showInputDialog("Data do abastecimento: \n"));
+					}catch(DescricaoEmBrancoException e) {
+						e.printStackTrace();
+					}
 					abastecimento.setKilometragem(Integer.parseInt(JOptionPane.showInputDialog("Kilometragem atual: ")));
 					abastecimento.setTipo_abastecimento(JOptionPane.showInputDialog("Qual o tipo de abastecimento: \n1- Tanque-Cheio\n2- Tanque-Nao-Cheio\n"));
-					abastecimento.setTipo_combustivel(listadeVeiculos.get(i).getCombustivel());
+					try {
+						abastecimento.setTipo_combustivel(JOptionPane.showInputDialog("Que tipo de combustivel deseja colocar: "));
+					}catch(DescricaoEmBrancoException e) {
+						e.printStackTrace();
+					}catch(CombustivelIncompativelException e) {
+						e.printStackTrace();
+					}
 					abastecimento.setValor_combustivel(Float.parseFloat(JOptionPane.showInputDialog("Preco da gasolina: \n")));
 					abastecimento.setValor_total(Float.parseFloat(JOptionPane.showInputDialog("Valor total do abastecimento: \n")));
 					listadeVeiculos.get(i).adDes(abastecimento);
@@ -120,10 +130,26 @@ public class Main {
 									numero = JOptionPane.showInputDialog("Para qual deles voce deseja registrar o imposto: \n");
 									i = Integer.parseInt(numero);
 									Imposto imposto = new Imposto();
-									imposto.setNome_despesa(JOptionPane.showInputDialog("Nome da despesa: \n"));
-									imposto.setAno_despesa(JOptionPane.showInputDialog("Ano despesa: \n"));
-									imposto.setCategoria(JOptionPane.showInputDialog("Categoria: \n"));
-									imposto.setValor_despesa(Double.parseDouble(JOptionPane.showInputDialog("Valor da despesa: ")));
+									try {
+										imposto.setNome_despesa(JOptionPane.showInputDialog("Nome da despesa: \n"));
+									}catch(DescricaoEmBrancoException e) {
+										e.printStackTrace();
+									}
+									try {
+										imposto.setAno_despesa(JOptionPane.showInputDialog("Ano despesa: \n"));
+									}catch(ValorInvalidoException e) {
+										e.printStackTrace();
+									}
+									try {
+										imposto.setCategoria(JOptionPane.showInputDialog("Categoria: \n"));
+									}catch(DescricaoEmBrancoException e) {
+										e.printStackTrace();
+									}
+									try {
+										imposto.setValor_despesa(Double.parseDouble(JOptionPane.showInputDialog("Valor da despesa: ")));
+									}catch(ValorInvalidoException e) {
+										e.printStackTrace();
+									}
 									listadeVeiculos.get(i).adDes(imposto);
 									break;
 								case 2:
@@ -131,10 +157,26 @@ public class Main {
 									numero = JOptionPane.showInputDialog("Para qual deles voce deseja registrar a multa: \n");
 									i = Integer.parseInt(numero);
 									Multa multa = new Multa();
-									multa.setNome_despesa(JOptionPane.showInputDialog("Nome da despesa: \n"));
-									multa.setAno_despesa(JOptionPane.showInputDialog("Ano despesa: \n"));
-									multa.setCategoria(JOptionPane.showInputDialog("Categoria: \n"));
-									multa.setValor_despesa(Double.parseDouble(JOptionPane.showInputDialog("Valor da despesa: ")));
+									try {
+										multa.setNome_despesa(JOptionPane.showInputDialog("Nome da despesa: \n"));
+									}catch(DescricaoEmBrancoException e) {
+										e.printStackTrace();
+									}
+									try {
+										multa.setAno_despesa(JOptionPane.showInputDialog("Ano despesa: \n"));
+									}catch(ValorInvalidoException e) {
+										e.printStackTrace();
+									}
+									try {
+										multa.setCategoria(JOptionPane.showInputDialog("Categoria: \n"));
+									}catch(DescricaoEmBrancoException e) {
+										e.printStackTrace();
+									}
+									try {
+										multa.setValor_despesa(Double.parseDouble(JOptionPane.showInputDialog("Valor da despesa: ")));
+									}catch(ValorInvalidoException e) {
+										e.printStackTrace();
+									}
 									listadeVeiculos.get(i).adDes(multa);
 									break;
 								case 3:
@@ -142,10 +184,26 @@ public class Main {
 									numero = JOptionPane.showInputDialog("Para qual deles voce deseja registrar o financiamento: \n");
 									i = Integer.parseInt(numero);
 									Financiamento financiamento= new Financiamento();
-									financiamento.setNome_despesa(JOptionPane.showInputDialog("Nome da despesa: \n"));
-									financiamento.setAno_despesa(JOptionPane.showInputDialog("Ano despesa: \n"));
-									financiamento.setCategoria(JOptionPane.showInputDialog("Categoria: \n"));
-									financiamento.setValor_despesa(Double.parseDouble(JOptionPane.showInputDialog("Valor da despesa: ")));
+									try {
+										financiamento.setNome_despesa(JOptionPane.showInputDialog("Nome da despesa: \n"));
+									}catch(DescricaoEmBrancoException e) {
+										e.printStackTrace();
+									}
+									try {
+										financiamento.setAno_despesa(JOptionPane.showInputDialog("Ano despesa: \n"));
+									}catch(ValorInvalidoException e) {
+										e.printStackTrace();
+									}
+									try {
+										financiamento.setCategoria(JOptionPane.showInputDialog("Categoria: \n"));
+									}catch(DescricaoEmBrancoException e) {
+										e.printStackTrace();
+									}
+									try {
+										financiamento.setValor_despesa(Double.parseDouble(JOptionPane.showInputDialog("Valor da despesa: ")));
+									}catch(ValorInvalidoException e) {
+										e.printStackTrace();
+									}
 									listadeVeiculos.get(i).adDes(financiamento);
 									break;
 								case 4:
@@ -153,10 +211,26 @@ public class Main {
 									numero = JOptionPane.showInputDialog("Para qual deles voce deseja registrar o seguro: \n");
 									i = Integer.parseInt(numero);
 									Seguro seguro = new Seguro();
-									seguro.setNome_despesa(JOptionPane.showInputDialog("Nome da despesa: \n"));
-									seguro.setAno_despesa(JOptionPane.showInputDialog("Ano despesa: \n"));
-									seguro.setCategoria(JOptionPane.showInputDialog("Categoria: \n"));
-									seguro.setValor_despesa(Double.parseDouble(JOptionPane.showInputDialog("Valor da despesa: ")));
+									try {
+										seguro.setNome_despesa(JOptionPane.showInputDialog("Nome da despesa: \n"));
+									}catch(DescricaoEmBrancoException e) {
+										e.printStackTrace();
+									}
+									try {
+										seguro.setAno_despesa(JOptionPane.showInputDialog("Ano despesa: \n"));
+									}catch(ValorInvalidoException e) {
+										e.printStackTrace();
+									}
+									try {
+										seguro.setCategoria(JOptionPane.showInputDialog("Categoria: \n"));
+									}catch(DescricaoEmBrancoException e) {
+										e.printStackTrace();
+									}
+									try {
+										seguro.setValor_despesa(Double.parseDouble(JOptionPane.showInputDialog("Valor da despesa: ")));
+									}catch(ValorInvalidoException e) {
+										e.printStackTrace();
+									}
 									listadeVeiculos.get(i).adDes(seguro);
 									break;
 							}
@@ -166,8 +240,16 @@ public class Main {
 							numero = JOptionPane.showInputDialog("Para qual deles voce deseja registrar a manutencao: \n");
 							i = Integer.parseInt(numero);
 							Manutencao manutencao = new Manutencao();
-							manutencao.setNome_despesa(JOptionPane.showInputDialog("Nome: \n"));
-							manutencao.setValor_despesa(Double.parseDouble(JOptionPane.showInputDialog("Valor da manutencao: \n")));
+							try {
+								manutencao.setNome_despesa(JOptionPane.showInputDialog("Nome: \n"));
+							}catch(DescricaoEmBrancoException e) {
+								e.printStackTrace();
+							}
+							try {
+								manutencao.setValor_despesa(Double.parseDouble(JOptionPane.showInputDialog("Valor da manutencao: \n")));
+							}catch(ValorInvalidoException e) {
+								e.printStackTrace();
+							}
 							listadeVeiculos.get(i).adDes(manutencao);
 							
 							break;
