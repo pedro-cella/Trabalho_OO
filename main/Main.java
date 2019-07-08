@@ -1,7 +1,9 @@
 package main;
 import javax.swing.JOptionPane;
 
+import excessoes.CombustivelIncompativelException;
 import excessoes.DescricaoEmBrancoException;
+import excessoes.ValorInvalidoException;
 import manutencao.Combustivel;
 import manutencao.Imposto;
 import manutencao.Financiamento;
@@ -37,17 +39,51 @@ public class Main {
 					for(i = 0; i < N; i++){
 						Veiculo veiculo = new Veiculo();
 						try {
-						veiculo.setMarca(JOptionPane.showInputDialog("Digite a marca: \n"));
-						veiculo.setModelo(JOptionPane.showInputDialog("Digite o modelo: \n"));
-						veiculo.setAno_fabricacao(Integer.parseInt(JOptionPane.showInputDialog("Digite o ano de fabricacao: \n")));
-						veiculo.setAno_modelo(Integer.parseInt(JOptionPane.showInputDialog("Digite o ano do modelo: \n")));
-						veiculo.setMotorizacao(Double.parseDouble(JOptionPane.showInputDialog("Digite a motorizacao: \n")));
-						veiculo.setCombustivel(JOptionPane.showInputDialog("Digite o tipo de combustivel: \n"));
-						veiculo.setCor(JOptionPane.showInputDialog("Digite a cor: \n"));
-						veiculo.setPlaca(JOptionPane.showInputDialog("Digite a placa: \n"));
-						veiculo.setRenavam(JOptionPane.showInputDialog("Digite o renavam: \n"));
+							veiculo.setMarca(JOptionPane.showInputDialog("Digite a marca: \n"));
+						} catch (DescricaoEmBrancoException e) {
+							e.printStackTrace();
+						}
+						try {
+							veiculo.setModelo(JOptionPane.showInputDialog("Digite o modelo: \n"));
+						} catch (DescricaoEmBrancoException e) {
+							e.printStackTrace();
+						}
+						try {
+							veiculo.setAno_fabricacao(Integer.parseInt(JOptionPane.showInputDialog("Digite o ano de fabricacao: \n")));
+						} catch (ValorInvalidoException e) {
+							e.printStackTrace();
+						}
+						try {
+							veiculo.setAno_modelo(Integer.parseInt(JOptionPane.showInputDialog("Digite o ano do modelo: \n")));
+						}catch(ValorInvalidoException e){
+							e.printStackTrace();
+						}
+						try {
+							veiculo.setMotorizacao(Double.parseDouble(JOptionPane.showInputDialog("Digite a motorizacao: \n")));
+						}catch (ValorInvalidoException e) {
+							e.printStackTrace();
+						}
+						try {
+							veiculo.setCombustivel(JOptionPane.showInputDialog("Digite o tipo de combustivel: \n"));
 						}catch(DescricaoEmBrancoException e) {
-							JOptionPane.showMessageDialog(null, "Voce deixou um dado em branco!");
+							e.printStackTrace();
+						}catch(CombustivelIncompativelException e) {
+							
+						}
+						try {
+							veiculo.setCor(JOptionPane.showInputDialog("Digite a cor: \n"));
+						}catch(DescricaoEmBrancoException e) {
+							e.printStackTrace();
+						}
+						try {
+							veiculo.setPlaca(JOptionPane.showInputDialog("Digite a placa: \n"));
+						}catch(DescricaoEmBrancoException e) {
+							e.printStackTrace();
+						}
+						try {
+							veiculo.setRenavam(JOptionPane.showInputDialog("Digite o renavam: \n"));
+						}catch(DescricaoEmBrancoException e) {
+							e.printStackTrace();
 						}
 						listadeVeiculos.add(veiculo);
 						JOptionPane.showMessageDialog(null, "Carro cadastrado !");
@@ -156,7 +192,7 @@ public class Main {
 							listadeVeiculos.get(i).consumo_veiculo();
 							break;
 						case 2:
-							listadeVeiculos.get(i).custo_km_rodado();e
+							listadeVeiculos.get(i).custo_km_rodado();
 					}
 					break;
 				}
