@@ -1,5 +1,8 @@
 package manutencao;
 
+import excecoes.DescricaoEmBrancoException;
+import excecoes.ValorInvalidoException;
+
 public class Manutencao extends Combustivel {
 
 public String nome_despesa;
@@ -15,7 +18,10 @@ public String getNome_despesa() {
 }
 
 public void setNome_despesa(String nome_despesa) {
-	this.nome_despesa = nome_despesa;
+	if(nome_despesa.equalsIgnoreCase(null))
+		throw new DescricaoEmBrancoException("Descrição em branco. Por favor insira um dado válido!");
+	else
+		this.nome_despesa = nome_despesa;
 }
 
 public int getOdometro() {
@@ -23,6 +29,7 @@ public int getOdometro() {
 }
 
 public void setOdometro(int odometro) {
+	if () //Necessario pegar o valor para a comparacao #######################################
 	this.odometro = odometro;
 }
 
@@ -31,7 +38,10 @@ public float getValor_total() {
 }
 
 public void setValor_total(float valor_total) {
-	this.valor_total = valor_total;
+	if(valor_total == 0.0f)
+		throw new ValorInvalidoException("Valor total inválido!");
+	else
+		this.valor_total = valor_total;
 }
 
 

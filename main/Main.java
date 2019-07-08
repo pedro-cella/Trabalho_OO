@@ -6,11 +6,12 @@ import manutencao.Despesas;
 import manutencao.Manutencao;
 import veiculo.Veiculo;
 import java.util.ArrayList;
+import excecoes.*;
 
 public class Main {
 
 	public static void main(String[] args) {
-		int opcao, N, i = 0, escolha, contador = 0;
+		int opcao = 0, N, i = 0, escolha, contador = 0;
 		String quantidade, tipo, numero;
 		ArrayList<Veiculo> listadeVeiculos = new ArrayList<>();
 		ArrayList<Combustivel> listadeAbastecimento = new ArrayList<>();
@@ -27,9 +28,12 @@ public class Main {
 						+ "4- Relatorio simples\n"
 						+ "5- Relatorio de desempenho\n"
 						+ "6- Sair");
-				
-				opcao = Integer.parseInt(Selecioneop);
-				
+			try {
+				opcao = menuOpcao(Selecioneop);
+			}catch (DescricaoEmBrancoException e)
+			{
+				JOptionPane.showMessageDialog(null, e.getMessage());
+			}
 				switch(opcao) {
 				case 1:
 					quantidade = JOptionPane.showInputDialog("Quantos veiculos deseja cadastrar: \n");
@@ -98,7 +102,19 @@ public class Main {
 					}
 					break;
 				}
+
+
 		}while(opcao != 6);
+	}
+	public static int menuOpcao(String op)
+	{
+		int opcao = Integer.parseInt(op);
+		if(op == null)
+			throw new DescricaoEmBrancoException("Nenhuma opção foi digitada!");
+		else if(opcao > 0 && opcao < 7)
+			return opcao;
+		else
+			throw new ValorInvalidoException("Opçao inválida!");
 	}
 
 }

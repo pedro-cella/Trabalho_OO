@@ -1,5 +1,9 @@
 package manutencao;
-public class Despesas extends Combustivel{ 
+
+import excecoes.DescricaoEmBrancoException;
+import excecoes.ValorInvalidoException;
+
+public class Despesas extends Combustivel{
 public String descricao;
 public int ano_despesa;
 public String categoria;
@@ -13,7 +17,10 @@ public String getDescricao() {
 }
 
 public void setDescricao(String descricao) {
-	this.descricao = descricao;
+	if (descricao.equalsIgnoreCase(null))
+		throw new DescricaoEmBrancoException("Descrição em branco. Por favor insira um dado válido!");
+	else
+		this.descricao = descricao;
 }
 
 public int getAno_despesa() {
@@ -21,7 +28,10 @@ public int getAno_despesa() {
 }
 
 public void setAno_despesa(int ano_despesa) {
-	this.ano_despesa = ano_despesa;
+	if(ano_despesa > 1950  && ano_despesa < 2020)
+		this.ano_despesa = ano_despesa;
+	else
+		throw new ValorInvalidoException("Ano de despesa inválido!");
 }
 
 public String getCategoria() {
@@ -29,7 +39,10 @@ public String getCategoria() {
 }
 
 public void setCategoria(String categoria) {
-	this.categoria = categoria;
+	if (categoria.equalsIgnoreCase(null))
+		throw new DescricaoEmBrancoException("Descrição em branco. Por favor insira um dado válido!");
+	else
+		this.categoria = categoria;
 }
 
 
