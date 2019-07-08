@@ -99,17 +99,33 @@ public class Main {
 					}catch(DescricaoEmBrancoException e) {
 						e.printStackTrace();
 					}
-					abastecimento.setKilometragem(Integer.parseInt(JOptionPane.showInputDialog("Kilometragem atual: ")));
-					abastecimento.setTipo_abastecimento(JOptionPane.showInputDialog("Qual o tipo de abastecimento: \n1- Tanque-Cheio\n2- Tanque-Nao-Cheio\n"));
 					try {
-						abastecimento.setTipo_combustivel(JOptionPane.showInputDialog("Que tipo de combustivel deseja colocar: "));
+						abastecimento.setKilometragem(Integer.parseInt(JOptionPane.showInputDialog("Kilometragem atual: ")));
+					}catch(ValorInvalidoException e) {
+						e.printStackTrace();
+					}
+					try {
+						abastecimento.setTipo_abastecimento(JOptionPane.showInputDialog("Qual o tipo de abastecimento: \n1- Tanque-Cheio\n2- Tanque-Nao-Cheio\n"));
+					}catch(DescricaoEmBrancoException e) {
+						e.printStackTrace();
+					}
+					try {
+						abastecimento.setTipo_combustivel(JOptionPane.showInputDialog("Tipo de combustivel: "));
 					}catch(DescricaoEmBrancoException e) {
 						e.printStackTrace();
 					}catch(CombustivelIncompativelException e) {
 						e.printStackTrace();
 					}
-					abastecimento.setValor_combustivel(Float.parseFloat(JOptionPane.showInputDialog("Preco da gasolina: \n")));
-					abastecimento.setValor_total(Float.parseFloat(JOptionPane.showInputDialog("Valor total do abastecimento: \n")));
+					try {
+						abastecimento.setValor_combustivel(Float.parseFloat(JOptionPane.showInputDialog("Preco da gasolina: \n")));
+					}catch(ValorInvalidoException e) {
+						e.printStackTrace();
+					}
+					try {
+						abastecimento.setValor_total(Float.parseFloat(JOptionPane.showInputDialog("Valor total do abastecimento: \n")));
+					}catch(ValorInvalidoException e) {
+						e.printStackTrace();2
+					}
 					listadeVeiculos.get(i).adDes(abastecimento);
 					JOptionPane.showMessageDialog(null, "Abastecimento cadastrado !");
 					break;
