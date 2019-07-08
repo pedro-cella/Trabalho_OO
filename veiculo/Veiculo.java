@@ -1,6 +1,7 @@
 package veiculo;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import excessoes.DescricaoEmBrancoException;
 import manutencao.Combustivel;
 import manutencao.Imposto;
 import manutencao.Multa;
@@ -24,7 +25,7 @@ public String combustivel;
 private String cor;
 private String placa;
 private String renavam;
-private Combustivel comb;
+public Combustivel c;
 
 public Veiculo(){
 	this.combustiveis = new ArrayList<>();
@@ -38,60 +39,60 @@ public Veiculo(){
 public String getMarca() {
 	return marca;
 }
-public void setMarca(String marca) {
+public void setMarca(String marca) throws DescricaoEmBrancoException{
 	this.marca = marca;
 }
 public String getModelo() {
 	return modelo;
 }
-public void setModelo(String modelo) {
+public void setModelo(String modelo) throws DescricaoEmBrancoException {
 	this.modelo = modelo;
 }
 public int getAno_fabricacao() {
 	return ano_fabricacao;
 }
-public void setAno_fabricacao(int ano_fabricacao) {
+public void setAno_fabricacao(int ano_fabricacao) throws DescricaoEmBrancoException{
 	this.ano_fabricacao = ano_fabricacao;
 }
 public int getAno_modelo() {
 	return ano_modelo;
 }
-public void setAno_modelo(int ano_modelo) {
+public void setAno_modelo(int ano_modelo) throws DescricaoEmBrancoException{
 	this.ano_modelo = ano_modelo;
 }
 public double getMotorizacao() {
 	return motorizacao;
 }
-public void setMotorizacao(double motorizacao) {
+public void setMotorizacao(double motorizacao) throws DescricaoEmBrancoException{
 	this.motorizacao = motorizacao;
 }
 public String getCombustivel() {
 	return combustivel;
 }
-public void setCombustivel(String combustivel) {
+public void setCombustivel(String combustivel) throws DescricaoEmBrancoException{
 	this.combustivel = combustivel;
 }
 public String getCor() {
 	return cor;
 }
-public void setCor(String cor) {
+public void setCor(String cor) throws DescricaoEmBrancoException{
 	this.cor = cor;
 }
 public String getPlaca() {
 	return placa;
 }
-public void setPlaca(String placa) {
+public void setPlaca(String placa) throws DescricaoEmBrancoException{
 	this.placa = placa;
 }
 public String getRenavam() {
 	return renavam;
 }
 
-public void setRenavam(String renavam) {
+public void setRenavam(String renavam) throws DescricaoEmBrancoException{
 	this.renavam = renavam;
 }
 
-//Possivel Polimorfismo- Inicio
+//Polimorfismo- Inicio
 public void adDes(Combustivel tmpComb) {
 	combustiveis.add(tmpComb);
 }
@@ -117,7 +118,7 @@ public void adDes(Manutencao tmpManut) {
 }
 //- Fim
 
-public void imprimedados() {
+public void imprimedados(){
 	if(combustiveis.size() == 0) {
 		JOptionPane.showMessageDialog(null, combustiveis.size() + " abastecimentos cadastrados");
 	}else {
@@ -125,12 +126,17 @@ public void imprimedados() {
 		for(i = 0; i < combustiveis.size(); i++) {
 			JOptionPane.showMessageDialog(null, "Tipo de Combustivel: " + combustiveis.get(i).getTipo_combustivel()
 												+ "\nData do Abastecimento: " + combustiveis.get(i).getData_abastecimento()
-												+ "\nKilometragem: " + combustiveis.get(i).getKilometragem()
-												+ "\nValor Total: " + combustiveis.get(i).getValor_total()
-												+ "\nTipo do Abastecimento: " + combustiveis.get(i).getTipo_abastecimento()
-												+ "\nPreco da gasolina: " + combustiveis.get(i).getValor_combustivel()); //<--AINDA NAO DA 100% CERTO
+												+ "\nValor Total: " + combustiveis.get(i).getValor_total()); 
 		}
-		JOptionPane.showMessageDialog(null,"\nKilometragem rodada: "  + (combustiveis.get(combustiveis.size() - 1).getKilometragem() - combustiveis.get(combustiveis.size() - 2).getKilometragem()));
+		if(combustiveis.size() == 1) {
+			i = 0;
+			JOptionPane.showMessageDialog(null, "\nKilometragem rodada: " + combustiveis.get(i).getKilometragem());
+			JOptionPane.showMessageDialog(null, "\nQuantidade abastecida: " + (combustiveis.get(i).getValor_total()/combustiveis.get(i).getValor_combustivel()) + "L");
+		}else {
+				JOptionPane.showMessageDialog(null, "\nKilometragem rodada: "  + (combustiveis.get(combustiveis.size() - 1).getKilometragem() - combustiveis.get(combustiveis.size() - 2).getKilometragem()));
+				JOptionPane.showMessageDialog(null, "\nQuantidade abastecida: " + (combustiveis.get(combustiveis.size() - 1).getValor_total()/combustiveis.get(combustiveis.size() - 1).getValor_combustivel()) + "L");
+		}
+		
 	}
 	
 	if(impostos.size() == 0) {
@@ -185,7 +191,33 @@ public void imprimedados() {
 												+ "\nValor da manutencao: " + manutencoes.get(i).getValor_despesa());
 		}
 	}
-	
+}
+
+public void consumo_veiculo() {//NAO IMPRIMI NADA, PULA O if
+	if(combustiveis.size()%2 == 0) {
+		if((combustiveis.get(combustiveis.size() - 2).getTipo_abastecimento() == "Tanque-Cheio") && (combustiveis.get(combustiveis.size() - 12).getTipo_abastecimento() == "Tanque-Cheio")) {
+			JOptionPane.showMessageDialog(null, "O consumo do seu veiculo e: "
+					+ ((combustiveis.get(combustiveis.size() - 1).getKilometragem() - combustiveis.get(combustiveis.size() - 2).getKilometragem())/(combustiveis.get(combustiveis.size() - 1).getValor_total()/combustiveis.get(combustiveis.size() - 1).getValor_combustivel())));
+		}
+	}else {
+		JOptionPane.showMessageDialog(null, "E necessario ter feito um numero de abastecimentos par para se ter o consumo do veiculo");
+	}
+}
+
+public void custo_km_rodado() {//ESTA DANDO PROBLEMA DE ACESSO NO ARRAY
+	if(combustiveis.size() == 1) {
+		JOptionPane.showMessageDialog(null, "Custo do KM rodado " + (combustiveis.get(combustiveis.size() - 1).getValor_combustivel() + impostos.get(combustiveis.size() - 1).getValor_despesa()
+				  + multas.get(combustiveis.size() - 1).getValor_despesa() + financiamentos.get(combustiveis.size() - 1).getValor_despesa()
+				  + seguros.get(combustiveis.size() - 1).getValor_despesa() + manutencoes.get(combustiveis.size() - 1).getValor_despesa())/(combustiveis.get(combustiveis.size() - 1).getKilometragem()));
+	}else if(combustiveis.size() >= 2){
+		for(int i = 0; i < combustiveis.size(); i++){
+			JOptionPane.showMessageDialog(null, "Custo do KM rodado: " + 
+												(combustiveis.get(i).getValor_total()+impostos.get(i).getValor_despesa()
+												+ multas.get(i).getValor_despesa() + financiamentos.get(i).getValor_despesa()
+												+ seguros.get(i).getValor_despesa() + manutencoes.get(i).getValor_despesa())
+												/(combustiveis.get(combustiveis.size() - 1).getKilometragem() - combustiveis.get(combustiveis.size() - 2).getKilometragem()));
+		}
+	}
 }
 
 }
