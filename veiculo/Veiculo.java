@@ -29,7 +29,6 @@ private String cor;
 private String placa;
 private String renavam;
 private double totalDesp = 0; //variavel global
-public Combustivel c;
 
 public Veiculo(){
 	this.combustiveis = new ArrayList<>();
@@ -44,7 +43,7 @@ public String getMarca() {
 	return marca;
 }
 public void setMarca(String marca) throws DescricaoEmBrancoException{
-	if(marca == null)
+	if(marca.isEmpty())
 		throw new DescricaoEmBrancoException("Descrição em branco. Por favor insira um dado válido!");
 	this.marca = marca;
 }
@@ -52,7 +51,7 @@ public String getModelo() {
 	return modelo;
 }
 public void setModelo(String modelo) throws DescricaoEmBrancoException{
-	if(modelo == null)
+	if(modelo.isEmpty())
 		throw new DescricaoEmBrancoException("Descrição em branco. Por favor insira um dado válido!");
 	this.modelo = modelo;
 }
@@ -90,21 +89,19 @@ public String getCombustivel() {
 	return combustivel;
 }
 public void setCombustivel(String combustivel) throws DescricaoEmBrancoException,CombustivelIncompativelException {
-	if(combustivel == null)
+	if(combustivel.isEmpty()) {
 		throw new DescricaoEmBrancoException("Descrição em branco. Por favor insira um dado válido!");
-	else if(combustivel.equalsIgnoreCase("Álcool") ||
-			combustivel.equalsIgnoreCase("Diesel") ||
-			combustivel.equalsIgnoreCase("Gasolina") ||
-			combustivel.equalsIgnoreCase("Flex"))
+	}else if(combustivel == "Álcool" || combustivel == "Diesel" ||combustivel == "Gasolina" ||combustivel == "Flex"){
 		this.combustivel = combustivel;
-	else
-	throw new CombustivelIncompativelException("Combustível inválido!");
+	}else {
+		throw new CombustivelIncompativelException("Combustível inválido!");
+	}
 }
 public String getCor() {
 	return cor;
 }
 public void setCor(String cor) throws DescricaoEmBrancoException {
-	if(cor == null)
+	if(cor.isEmpty())
 		throw new DescricaoEmBrancoException("Descrição em branco. Por favor insira um dado válido!");
 	this.cor = cor;
 }
@@ -112,7 +109,7 @@ public String getPlaca() {
 	return placa;
 }
 public void setPlaca(String placa) throws DescricaoEmBrancoException {
-	if(placa == null)
+	if(placa.isEmpty())
 		throw new DescricaoEmBrancoException("Descrição em branco. Por favor insira um dado válido!");
 	this.placa = placa;
 }
@@ -121,7 +118,7 @@ public String getRenavam() {
 }
 
 public void setRenavam(String renavam) throws DescricaoEmBrancoException{
-	if(renavam == null)
+	if(renavam.isEmpty())
 		throw new DescricaoEmBrancoException("Descrição em branco. Por favor insira um dado válido!");
 	this.renavam = renavam;
 }
