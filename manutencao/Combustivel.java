@@ -2,7 +2,6 @@ package manutencao;
 import excessoes.DescricaoEmBrancoException;
 import excessoes.ValorInvalidoException;
 import excessoes.CombustivelIncompativelException;
-import veiculo.Veiculo;
 public class Combustivel extends Despesas{
 protected String data_abastecimento;
 protected String tipo_combustivel;
@@ -11,8 +10,9 @@ public float valor_combustivel;
 public float valor_total;
 protected String tipo_abastecimento;
 
-public Combustivel(String teste){
+public Combustivel(String teste, int anterior){
 	this.tipo_combustivel = teste;
+	this.kilometragem = anterior;
 }
 
 public String getData_abastecimento() {
@@ -46,12 +46,10 @@ public int getKilometragem() {
 }
 
 public void setKilometragem(int kilometragem) throws ValorInvalidoException{
-	if(this.kilometragem < kilometragem) {
-		System.out.println("Valor do this.kilometragem: " + this.kilometragem);
-		System.out.println("valor do kilometragem: " + kilometragem);
-		this.kilometragem = kilometragem;
-	}else {
+	if(this.kilometragem > kilometragem) {
 		throw new ValorInvalidoException("Valor de kilometragem inválido!");
+	}else {
+		this.kilometragem = kilometragem;
 	}
 }
 
