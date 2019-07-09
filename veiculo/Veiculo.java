@@ -29,6 +29,7 @@ private String cor;
 private String placa;
 private String renavam;
 private double totalDesp = 0; //variavel global
+public Combustivel c;
 
 public Veiculo(){
 	this.combustiveis = new ArrayList<>();
@@ -147,6 +148,17 @@ public void adDes(Manutencao tmpManut) {
 }
 //- Fim
 
+public Combustivel CadastroAbastecimento() {
+	if(combustiveis.size() == 0) {
+		//como a lista de combustiveis abastecidos esta vazia passa o tipo de combustivel do veiculo como parametro e 0 pois a ultima kilometragem não existe.
+		c =  new Combustivel(getCombustivel(),0);
+	}else { 
+		//Passa como parametros o tipo de combustivel do carro e a kilometragem do ultimo abastecimento da lista de combustiveis
+		c = new Combustivel(getCombustivel(),combustiveis.get(combustiveis.size()-1).getKilometragem()); 
+	}
+	return c;
+}
+
 public void imprimedados(){
 	if(combustiveis.size() == 0) {
 		JOptionPane.showMessageDialog(null, combustiveis.size() + " abastecimentos cadastrados");
@@ -228,8 +240,10 @@ public void consumo_veiculo() { //Problema de impressao corrigida
 			JOptionPane.showMessageDialog(null, "O consumo do seu veiculo e: "
 					+ ((combustiveis.get(combustiveis.size() - 1).getKilometragem() - combustiveis.get(combustiveis.size() - 2).getKilometragem())/(combustiveis.get(combustiveis.size() - 1).getValor_total()/combustiveis.get(combustiveis.size() - 1).getValor_combustivel())));
 		}
-	}else {
+	}else if(combustiveis.size()%2 != 0){
 		JOptionPane.showMessageDialog(null, "E necessario ter feito um numero de abastecimentos par para se ter o consumo do veiculo");
+	}else if (combustiveis.size() == 0){
+		JOptionPane.showMessageDialog(null, "Essa opcao esta necessita de abastecimentos cadastrados para prosseguir\n");
 	}
 }
 
@@ -281,10 +295,13 @@ public void custo_km_rodado() {//Problema de acesso corrigido
 			totalDesp += seguros.get(i).getValor_despesa();
 		}
 	}
-	
-	JOptionPane.showMessageDialog(null, "Custo do KM rodade: "+ totalDesp /(combustiveis.get(combustiveis.size() - 1).getKilometragem() - combustiveis.get(combustiveis.size() - 2).getKilometragem()));
-	
-	
+	if(combustiveis.size() == 0) {
+		JOptionPane.showMessageDialog(null, "Custo do KM rodado: "+ totalDesp /1);
+	}else if(combustiveis.size() == 1) {
+		JOptionPane.showMessageDialog(null, "Custo do KM rodado: "+ totalDesp /(combustiveis.get(combustiveis.size() - 1).getKilometragem()));
+	}else {
+		JOptionPane.showMessageDialog(null, "Custo do KM rodado: "+ totalDesp /(combustiveis.get(combustiveis.size() - 1).getKilometragem() - combustiveis.get(combustiveis.size() - 2).getKilometragem()));
+	}
 }
 
 }
