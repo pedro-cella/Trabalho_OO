@@ -1,21 +1,12 @@
 package manutencao;
+
 import excessoes.DescricaoEmBrancoException;
 import excessoes.ValorInvalidoException;
 
-public class Manutencao extends Despesas {
-
-public int odometro;
-
-public Manutencao(){
+public class Financiamento extends Despesas{
 	
-}
-
-public int getOdometro() {
-	return odometro;
-}
-
-public void setOdometro(int odometro) {
-	this.odometro = odometro;
+public Financiamento() {
+	
 }
 
 public String getNome_despesa() {
@@ -36,9 +27,9 @@ public String getAno_despesa() {
 public void setAno_despesa(String ano_despesa) throws ValorInvalidoException{
 	int valor = Integer.parseInt(ano_despesa);
 	if(valor > 1950 && valor < 2020) {
-		throw new ValorInvalidoException("Ano de despesa inválido!");
-	}else {
 		this.ano_despesa = ano_despesa;
+	}else {
+		throw new ValorInvalidoException("Ano de despesa inválido!");
 	}
 }
 
@@ -47,7 +38,7 @@ public String getCategoria() {
 }
 
 public void setCategoria(String categoria) throws DescricaoEmBrancoException{
-	if (categoria.isEmpty()) {
+	if(categoria.isEmpty()) {
 		throw new DescricaoEmBrancoException("Descrição em branco. Por favor insira um dado válido!");
 	}else {
 		this.categoria = categoria;
@@ -65,5 +56,4 @@ public void setValor_despesa(double valor_despesa) throws ValorInvalidoException
 		this.valor_despesa = valor_despesa;
 	}
 }
-
 }
