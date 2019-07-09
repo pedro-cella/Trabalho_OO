@@ -150,6 +150,17 @@ public void adDes(Seguro tmpSeg) {
 public void adDes(Manutencao tmpManut) {
 	manutencoes.add(tmpManut);
 }
+
+public Combustivel CadastroAbastecimento() {
+	if(combustiveis.size()==0) {
+		//como a lista de combustiveis abastecidos esta vazia passa o tipo de combustivel do veiculo como parametro e 0 pois a ultima kilometragem não existe.
+		c =  new Combustivel(getCombustivel(),0);
+	}else { 
+		//Passa como parametros o tipo de combustivel do carro e a kilometragem do ultimo abastecimento da lista de combustiveis
+		c = new Combustivel(getCombustivel(),combustiveis.get(combustiveis.size()-1).getKilometragem()); 
+	}
+	return c;
+}
 //- Fim
 
 public void imprimedados(){
