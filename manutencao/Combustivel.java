@@ -1,7 +1,6 @@
 package manutencao;
 import excessoes.DescricaoEmBrancoException;
 import excessoes.ValorInvalidoException;
-import veiculo.Veiculo;
 import excessoes.CombustivelIncompativelException;
 public class Combustivel extends Despesas{
 protected String data_abastecimento;
@@ -11,8 +10,9 @@ public float valor_combustivel;
 public float valor_total;
 protected String tipo_abastecimento;
 
-public Combustivel(String teste){ //Uso do metodo construtor para dar um set no this.tipo_combustivel
-	this.tipo_combustivel = teste; //variavel teste recebe o nome do combustivel definido para o veiculo no cadastro
+public Combustivel(String combustivel_veiculo, int anterior){
+	this.tipo_combustivel = combustivel_veiculo;
+	this.kilometragem = anterior;
 }
 
 public String getData_abastecimento() {
@@ -31,7 +31,7 @@ public String getTipo_combustivel() {
 	return tipo_combustivel;
 }
 
-public void setTipo_combustivel(String tipo_combustivel) throws DescricaoEmBrancoException, CombustivelIncompativelException{ //Variavel chamada tipo_combustivel vai entrar como parametro definida com o nome do combustivel na hora do abastecimento
+public void setTipo_combustivel(String tipo_combustivel) throws DescricaoEmBrancoException, CombustivelIncompativelException{
 	if(tipo_combustivel.isEmpty()) {
 		throw new DescricaoEmBrancoException("Descrição em branco. Por favor insira um dado inválido!");
 	}else if(this.tipo_combustivel.equalsIgnoreCase(tipo_combustivel) == false) {  //Usei o comando "equalsIgnoreCase" para realizar a comparação dos comnustiveis
