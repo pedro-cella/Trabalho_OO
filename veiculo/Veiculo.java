@@ -91,7 +91,7 @@ public String getCombustivel() {
 public void setCombustivel(String combustivel) throws DescricaoEmBrancoException,CombustivelIncompativelException {
 	if(combustivel.isEmpty()) {
 		throw new DescricaoEmBrancoException("Descrição em branco. Por favor insira um dado válido!");
-	}else {
+	}else if(combustivel == "Alcool" || combustivel == "Gasolina" || combustivel == "Diesel" || combustivel == "Flex"){
 		this.combustivel = combustivel;
 	}
 }
@@ -233,7 +233,7 @@ public void consumo_veiculo() { //Problema de impressao corrigida
 	}
 }
 
-public void custo_km_rodado() {//ESTA DANDO PROBLEMA DE ACESSO NO ARRAY
+public void custo_km_rodado() {//Problema de acesso corrigido
 	
 	if(combustiveis.size() == 1) {
 	totalDesp = combustiveis.get(combustiveis.size() - 1).getValor_combustivel();
