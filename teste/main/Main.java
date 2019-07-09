@@ -93,8 +93,9 @@ public class Main {
 					JOptionPane.showMessageDialog(null, "Existem " + listadeVeiculos.size() + " carros cadastrados\n");
 					numero = JOptionPane.showInputDialog("Para qual deles voce deseja registrar o abastecimento: \n");
 					i = Integer.parseInt(numero);
-					Combustivel abastecimento = new Combustivel(listadeVeiculos.get(i).getCombustivel());
-					try {
+					// Aqui a referencia abastecimento passa a apontar para a mesma referencia c definida dentro da classe do veiculo "i"
+					Combustivel abastecimento = listadeVeiculos.get(i).CadastroAbastecimento(); 
+						try {
 						abastecimento.setData_abastecimento(JOptionPane.showInputDialog("Data do abastecimento: \n"));
 					}catch(DescricaoEmBrancoException e) {
 						e.printStackTrace();
