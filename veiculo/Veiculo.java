@@ -90,11 +90,15 @@ public String getCombustivel() {
 	return combustivel;
 }
 public void setCombustivel(String combustivel) throws DescricaoEmBrancoException,CombustivelIncompativelException {
-	if(combustivel.isEmpty()) {
+	if(combustivel.isEmpty())
 		throw new DescricaoEmBrancoException("Descrição em branco. Por favor insira um dado válido!");
-	}else if(combustivel == "Alcool" || combustivel == "Gasolina" || combustivel == "Diesel" || combustivel == "Flex"){
+	else if(combustivel.equalsIgnoreCase("Álcool") ||
+			combustivel.equalsIgnoreCase("Diesel") ||
+			combustivel.equalsIgnoreCase("Gasolina") ||
+			combustivel.equalsIgnoreCase("Flex"))
 		this.combustivel = combustivel;
-	}
+	else
+	throw new CombustivelIncompativelException("Combustível inválido!");
 }
 public String getCor() {
 	return cor;
@@ -295,6 +299,7 @@ public void custo_km_rodado() {//Problema de acesso corrigido
 			totalDesp += seguros.get(i).getValor_despesa();
 		}
 	}
+	
 	if(combustiveis.size() == 0) {
 		JOptionPane.showMessageDialog(null, "Custo do KM rodado: "+ totalDesp /1);
 	}else if(combustiveis.size() == 1) {
