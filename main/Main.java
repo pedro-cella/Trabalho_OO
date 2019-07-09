@@ -68,7 +68,7 @@ public class Main {
 						}catch(DescricaoEmBrancoException e) {
 							e.printStackTrace();
 						}catch(CombustivelIncompativelException e) {
-							
+							e.printStackTrace();
 						}
 						try {
 							veiculo.setCor(JOptionPane.showInputDialog("Digite a cor: \n"));
@@ -93,7 +93,7 @@ public class Main {
 					JOptionPane.showMessageDialog(null, "Existem " + listadeVeiculos.size() + " carros cadastrados\n");
 					numero = JOptionPane.showInputDialog("Para qual deles voce deseja registrar o abastecimento: \n");
 					i = Integer.parseInt(numero);
-					Combustivel abastecimento = new Combustivel(listadeVeiculos.get(i).getCombustivel());
+					Combustivel abastecimento = listadeVeiculos.get(i).CadastroAbastecimento();
 					try {
 						abastecimento.setData_abastecimento(JOptionPane.showInputDialog("Data do abastecimento: \n"));
 					}catch(DescricaoEmBrancoException e) {
