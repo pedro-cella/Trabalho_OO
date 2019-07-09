@@ -68,7 +68,7 @@ public class Main {
 						}catch(DescricaoEmBrancoException e) {
 							e.printStackTrace();
 						}catch(CombustivelIncompativelException e) {
-							
+							e.printStackTrace();
 						}
 						try {
 							veiculo.setCor(JOptionPane.showInputDialog("Digite a cor: \n"));
