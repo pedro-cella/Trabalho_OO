@@ -10,8 +10,9 @@ public float valor_combustivel;
 public float valor_total;
 protected String tipo_abastecimento;
 
-public Combustivel(String teste){
-	this.tipo_combustivel = teste;
+public Combustivel(String combustivel_veiculo, int anterior){
+	this.tipo_combustivel = combustivel_veiculo;
+	this.kilometragem = anterior;
 }
 
 public String getData_abastecimento() {
@@ -20,7 +21,7 @@ public String getData_abastecimento() {
 
 public void setData_abastecimento(String data_abastecimento) throws DescricaoEmBrancoException {
 	if(data_abastecimento.isEmpty()) {
-		throw new DescricaoEmBrancoException("Descrição em branco. Por favor insira um dado inválido!");
+		throw new DescricaoEmBrancoException("DescriÃ§Ã£o em branco. Por favor insira um dado invÃ¡lido!");
 	}else {
 		this.data_abastecimento = data_abastecimento;
 	}
@@ -32,9 +33,9 @@ public String getTipo_combustivel() {
 
 public void setTipo_combustivel(String tipo_combustivel) throws DescricaoEmBrancoException, CombustivelIncompativelException{
 	if(tipo_combustivel.isEmpty()) {
-		throw new DescricaoEmBrancoException("Descrição em branco. Por favor insira um dado inválido!");
-	}else if(this.tipo_combustivel.equalsIgnoreCase(tipo_combustivel) == false) {  //Usei o comando "equalsIgnoreCase" para realizar a comparação dos comnustiveis
-		throw new CombustivelIncompativelException("Esse veiculo nao aceita esse tipo de combustivel!"); //Basicamente se o combustivel definido para o veiculo for diferente do combustivel na hora do abastecimento, sera lançada a excessão
+		throw new DescricaoEmBrancoException("DescriÃ§Ã£o em branco. Por favor insira um dado invÃ¡lido!");
+	}else if(this.tipo_combustivel.equalsIgnoreCase(tipo_combustivel) == false) {  //Usei o comando "equalsIgnoreCase" para realizar a comparaÃ§Ã£o dos comnustiveis
+		throw new CombustivelIncompativelException("Esse veiculo nao aceita esse tipo de combustivel!"); //Basicamente se o combustivel definido para o veiculo for diferente do combustivel na hora do abastecimento, sera lanÃ§ada a excessÃ£o
 	}else {
 		this.tipo_combustivel = tipo_combustivel;
 	}
@@ -46,7 +47,7 @@ public int getKilometragem() {
 
 public void setKilometragem(int kilometragem) throws ValorInvalidoException{
 	if(this.kilometragem > kilometragem) {
-		throw new ValorInvalidoException("Valor de kilometragem inválido!");
+		throw new ValorInvalidoException("Valor de kilometragem invÃ¡lido!");
 	}else {
 		this.kilometragem = kilometragem;
 	}
@@ -58,7 +59,7 @@ public float getValor_combustivel() {
 
 public void setValor_combustivel(float valor_combustivel) throws ValorInvalidoException{
 	if(valor_combustivel <= 0) {
-		throw new ValorInvalidoException("Valor de combustivel inválido!");
+		throw new ValorInvalidoException("Valor de combustivel invÃ¡lido!");
 	}else {
 		this.valor_combustivel = valor_combustivel;
 	}
@@ -70,7 +71,7 @@ public float getValor_total() {
 
 public void setValor_total(float valor_total) throws ValorInvalidoException{
 	if(valor_total <= 0) {
-		throw new ValorInvalidoException("Valor de abastecimento inválido!");
+		throw new ValorInvalidoException("Valor de abastecimento invÃ¡lido!");
 	}else {
 		this.valor_total = valor_total;
 	}
@@ -82,7 +83,7 @@ public String getTipo_abastecimento(){
 
 public void setTipo_abastecimento(String tipo_abastecimento) throws DescricaoEmBrancoException{
 	if(tipo_abastecimento.isEmpty()) {
-		throw new DescricaoEmBrancoException("Descrição em branco. Por favor insira um dado inválido!");
+		throw new DescricaoEmBrancoException("DescriÃ§Ã£o em branco. Por favor insira um dado invÃ¡lido!");
 	}else {
 		this.tipo_abastecimento = tipo_abastecimento;
 	}
