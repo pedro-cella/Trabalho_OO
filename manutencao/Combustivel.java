@@ -1,7 +1,6 @@
 package manutencao;
 import excessoes.DescricaoEmBrancoException;
 import excessoes.ValorInvalidoException;
-import veiculo.Veiculo;
 import excessoes.CombustivelIncompativelException;
 public class Combustivel extends Despesas{
 protected String data_abastecimento;
@@ -11,8 +10,8 @@ public float valor_combustivel;
 public float valor_total;
 protected String tipo_abastecimento;
 
-public Combustivel(){
-	
+public Combustivel(String teste){
+	this.tipo_combustivel = teste;
 }
 
 public String getData_abastecimento() {
@@ -34,8 +33,8 @@ public String getTipo_combustivel() {
 public void setTipo_combustivel(String tipo_combustivel) throws DescricaoEmBrancoException, CombustivelIncompativelException{
 	if(tipo_combustivel.isEmpty()) {
 		throw new DescricaoEmBrancoException("Descrição em branco. Por favor insira um dado inválido!");
-	}else if(this.tipo_combustivel != tipo_combustivel) {
-		throw new CombustivelIncompativelException("Esse veiculo nao aceita esse tipo de combustivel!");
+	}else if(this.tipo_combustivel.equalsIgnoreCase(tipo_combustivel) == false) {  //Usei o comando "equalsIgnoreCase" para realizar a comparação dos comnustiveis
+		throw new CombustivelIncompativelException("Esse veiculo nao aceita esse tipo de combustivel!"); //Basicamente se o combustivel definido para o veiculo for diferente do combustivel na hora do abastecimento, sera lançada a excessão
 	}else {
 		this.tipo_combustivel = tipo_combustivel;
 	}
