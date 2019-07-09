@@ -93,7 +93,7 @@ public class Main {
 					JOptionPane.showMessageDialog(null, "Existem " + listadeVeiculos.size() + " carros cadastrados\n");
 					numero = JOptionPane.showInputDialog("Para qual deles voce deseja registrar o abastecimento: \n");
 					i = Integer.parseInt(numero);
-					Combustivel abastecimento = new Combustivel();
+					Combustivel abastecimento = new Combustivel(listadeVeiculos.get(i).getCombustivel());
 					try {
 						abastecimento.setData_abastecimento(JOptionPane.showInputDialog("Data do abastecimento: \n"));
 					}catch(DescricaoEmBrancoException e) {
@@ -124,7 +124,7 @@ public class Main {
 					try {
 						abastecimento.setValor_total(Float.parseFloat(JOptionPane.showInputDialog("Valor total do abastecimento: \n")));
 					}catch(ValorInvalidoException e) {
-						e.printStackTrace();2
+						e.printStackTrace();
 					}
 					listadeVeiculos.get(i).adDes(abastecimento);
 					JOptionPane.showMessageDialog(null, "Abastecimento cadastrado !");
