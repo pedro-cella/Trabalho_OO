@@ -14,7 +14,7 @@ public String getNome_despesa() {
 }
 public void setNome_despesa(String nome_despesa) throws DescricaoEmBrancoException{
 	if(nome_despesa.isEmpty()) {
-		throw new DescricaoEmBrancoException("Descrição em branco. Por favor insira um dado inválido!");
+		throw new DescricaoEmBrancoException("Descrição em branco. Por favor insira um dado válido!");
 	}else {
 		this.nome_despesa = nome_despesa;
 	}

@@ -2,6 +2,7 @@ package manutencao;
 import excessoes.DescricaoEmBrancoException;
 import excessoes.ValorInvalidoException;
 import excessoes.CombustivelIncompativelException;
+import veiculo.Veiculo;
 public class Combustivel extends Despesas{
 protected String data_abastecimento;
 protected String tipo_combustivel;
@@ -20,7 +21,7 @@ public String getData_abastecimento() {
 
 public void setData_abastecimento(String data_abastecimento) throws DescricaoEmBrancoException {
 	if(data_abastecimento.isEmpty()) {
-		throw new DescricaoEmBrancoException("Descrição em branco. Por favor insira um dado inválido!");
+		throw new DescricaoEmBrancoException("Descrição em branco. Por favor insira um dado válido!");
 	}else {
 		this.data_abastecimento = data_abastecimento;
 	}
@@ -32,7 +33,7 @@ public String getTipo_combustivel() {
 
 public void setTipo_combustivel(String tipo_combustivel) throws DescricaoEmBrancoException, CombustivelIncompativelException{
 	if(tipo_combustivel.isEmpty()) {
-		throw new DescricaoEmBrancoException("Descrição em branco. Por favor insira um dado inválido!");
+		throw new DescricaoEmBrancoException("Descrição em branco. Por favor insira um dado válido!");
 	}else if(this.tipo_combustivel.equalsIgnoreCase(tipo_combustivel) == false) {  //Usei o comando "equalsIgnoreCase" para realizar a comparação dos comnustiveis
 		throw new CombustivelIncompativelException("Esse veiculo nao aceita esse tipo de combustivel!"); //Basicamente se o combustivel definido para o veiculo for diferente do combustivel na hora do abastecimento, sera lançada a excessão
 	}else {
@@ -45,10 +46,12 @@ public int getKilometragem() {
 }
 
 public void setKilometragem(int kilometragem) throws ValorInvalidoException{
-	if(this.kilometragem > kilometragem) {
-		throw new ValorInvalidoException("Valor de kilometragem inválido!");
-	}else {
+	if(this.kilometragem < kilometragem) {
+		System.out.println("Valor do this.kilometragem: " + this.kilometragem);
+		System.out.println("valor do kilometragem: " + kilometragem);
 		this.kilometragem = kilometragem;
+	}else {
+		throw new ValorInvalidoException("Valor de kilometragem inválido!");
 	}
 }
 
@@ -82,7 +85,7 @@ public String getTipo_abastecimento(){
 
 public void setTipo_abastecimento(String tipo_abastecimento) throws DescricaoEmBrancoException{
 	if(tipo_abastecimento.isEmpty()) {
-		throw new DescricaoEmBrancoException("Descrição em branco. Por favor insira um dado inválido!");
+		throw new DescricaoEmBrancoException("Descrição em branco. Por favor insira um dado válido!");
 	}else {
 		this.tipo_abastecimento = tipo_abastecimento;
 	}
