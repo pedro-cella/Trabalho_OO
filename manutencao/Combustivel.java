@@ -34,8 +34,10 @@ public String getTipo_combustivel() {
 public void setTipo_combustivel(String tipo_combustivel) throws DescricaoEmBrancoException, CombustivelIncompativelException{
 	if(tipo_combustivel.isEmpty()) {
 		throw new DescricaoEmBrancoException("Descrição em branco. Por favor insira um dado inválido!");
-	}else if(this.tipo_combustivel.equalsIgnoreCase(tipo_combustivel) == false) {  //Usei o comando "equalsIgnoreCase" para realizar a comparação dos comnustiveis
+	}else if(this.tipo_combustivel.equalsIgnoreCase("Flex") && (tipo_combustivel.equalsIgnoreCase("Alcool")== false || tipo_combustivel.equalsIgnoreCase("Gasolina") == false)) {  //Usei o comando "equalsIgnoreCase" para realizar a comparação dos comnustiveis
 		throw new CombustivelIncompativelException("Esse veiculo nao aceita esse tipo de combustivel!"); //Basicamente se o combustivel definido para o veiculo for diferente do combustivel na hora do abastecimento, sera lançada a excessão
+	}else if(this.tipo_combustivel.equalsIgnoreCase("Flex")== false && (this.tipo_combustivel.equalsIgnoreCase(tipo_combustivel)==false)) {
+		throw new CombustivelIncompativelException("Esse veiculo nao aceita esse tipo de combustivel!");
 	}else {
 		this.tipo_combustivel = tipo_combustivel;
 	}
