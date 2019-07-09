@@ -34,9 +34,12 @@ public class Main {
 				
 				switch(opcao) {
 				case 1:
-					quantidade = JOptionPane.showInputDialog("Quantos veiculos deseja cadastrar: \n");
-					N = Integer.parseInt(quantidade);
-					for(i = 0; i < N; i++){
+					//quantidade = JOptionPane.showInputDialog("Quantos veiculos deseja cadastrar: \n");
+					//N = Integer.parseInt(quantidade);
+					//for(i = 0; i < N; i++)
+					int n = 1;
+					int i1 = 0;
+					do{
 						Veiculo veiculo = new Veiculo();
 						try {
 							veiculo.setMarca(JOptionPane.showInputDialog("Digite a marca: \n"));
@@ -87,7 +90,16 @@ public class Main {
 						}
 						listadeVeiculos.add(veiculo);
 						JOptionPane.showMessageDialog(null, "Carro cadastrado !");
-					}
+						
+						int pergunta = JOptionPane.showConfirmDialog(null, "Deseja cadastrar mais carros? \n");
+						
+						if(pergunta==1) {
+							break;
+						}else{
+							i1++;
+							n++;
+						}
+					}while(i1<n);
 					break;
 				case 2:
 					JOptionPane.showMessageDialog(null, "Existem " + listadeVeiculos.size() + " carros cadastrados\n");
