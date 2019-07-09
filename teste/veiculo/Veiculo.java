@@ -45,7 +45,7 @@ public String getMarca() {
 }
 public void setMarca(String marca) throws DescricaoEmBrancoException{
 	if(marca.isEmpty())
-		throw new DescricaoEmBrancoException("Descri��o em branco. Por favor insira um dado v�lido!");
+		throw new DescricaoEmBrancoException("Descrição em branco. Por favor insira um dado válido!");
 	this.marca = marca;
 }
 public String getModelo() {
@@ -53,7 +53,7 @@ public String getModelo() {
 }
 public void setModelo(String modelo) throws DescricaoEmBrancoException{
 	if(modelo == null)
-		throw new DescricaoEmBrancoException("Descri��o em branco. Por favor insira um dado v�lido!");
+		throw new DescricaoEmBrancoException("Descrição em branco. Por favor insira um dado válido!");
 	this.modelo = modelo;
 }
 public int getAno_fabricacao() {
@@ -61,7 +61,7 @@ public int getAno_fabricacao() {
 }
 public void setAno_fabricacao(int ano_fabricacao) throws ValorInvalidoException{
 	if(ano_fabricacao < 1950 || ano_fabricacao > 2020) {
-		throw new ValorInvalidoException("Ano de fabrica��o inv�lido!");
+		throw new ValorInvalidoException("Ano de fabricação inválido!");
 	}else {
 		this.ano_fabricacao = ano_fabricacao;
 	}
@@ -71,7 +71,7 @@ public int getAno_modelo() {
 }
 public void setAno_modelo(int ano_modelo) throws ValorInvalidoException{
 	if(ano_modelo < 1950 || ano_modelo > 2020) {
-		throw new ValorInvalidoException("Ano do modelo inv�lido!");
+		throw new ValorInvalidoException("Ano do modelo inválido!");
 	}else {
 		this.ano_modelo = ano_modelo;
 	}
@@ -81,7 +81,7 @@ public double getMotorizacao() {
 }
 public void setMotorizacao(double motorizacao) throws ValorInvalidoException {
 	if(motorizacao < 1.0 || motorizacao > 8.1) {
-		throw new ValorInvalidoException("Motoriza��o inv�lida!");
+		throw new ValorInvalidoException("Motorização inválida!");
 	}else {
 		this.motorizacao = motorizacao;
 	}
@@ -91,21 +91,21 @@ public String getCombustivel() {
 }
 public void setCombustivel(String combustivel) throws DescricaoEmBrancoException,CombustivelIncompativelException {
 	if(combustivel.isEmpty())
-		throw new DescricaoEmBrancoException("Descri��o em branco. Por favor insira um dado v�lido!");
-	else if(combustivel.equalsIgnoreCase("�lcool") ||
+		throw new DescricaoEmBrancoException("Descrição em branco. Por favor insira um dado válido!");
+	else if(combustivel.equalsIgnoreCase("Álcool") ||
 			combustivel.equalsIgnoreCase("Diesel") ||
 			combustivel.equalsIgnoreCase("Gasolina") ||
 			combustivel.equalsIgnoreCase("Flex"))
 		this.combustivel = combustivel;
 	else
-	throw new CombustivelIncompativelException("Combust�vel inv�lido!");
+	throw new CombustivelIncompativelException("Combustível inválido!");
 }
 public String getCor() {
 	return cor;
 }
 public void setCor(String cor) throws DescricaoEmBrancoException {
 	if(cor.isEmpty())
-		throw new DescricaoEmBrancoException("Descri��o em branco. Por favor insira um dado v�lido!");
+		throw new DescricaoEmBrancoException("Descrição em branco. Por favor insira um dado válido!");
 	this.cor = cor;
 }
 public String getPlaca() {
@@ -113,7 +113,7 @@ public String getPlaca() {
 }
 public void setPlaca(String placa) throws DescricaoEmBrancoException {
 	if(placa.isEmpty())
-		throw new DescricaoEmBrancoException("Descri��o em branco. Por favor insira um dado v�lido!");
+		throw new DescricaoEmBrancoException("Descrição em branco. Por favor insira um dado válido!");
 	this.placa = placa;
 }
 public String getRenavam() {
@@ -122,7 +122,7 @@ public String getRenavam() {
 
 public void setRenavam(String renavam) throws DescricaoEmBrancoException{
 	if(renavam.isEmpty())
-		throw new DescricaoEmBrancoException("Descri��o em branco. Por favor insira um dado v�lido!");
+		throw new DescricaoEmBrancoException("Descrição em branco. Por favor insira um dado válido!");
 	this.renavam = renavam;
 }
 
@@ -149,6 +149,17 @@ public void adDes(Seguro tmpSeg) {
 
 public void adDes(Manutencao tmpManut) {
 	manutencoes.add(tmpManut);
+}
+
+public Combustivel CadastroAbastecimento() {
+	if(combustiveis.size()==0) {
+		//como a lista de combustiveis abastecidos esta vazia passa o tipo de combustivel do veiculo como parametro e 0 pois a ultima kilometragem não existe.
+		c =  new Combustivel(getCombustivel(),0);
+	}else { 
+		//Passa como parametros o tipo de combustivel do carro e a kilometragem do ultimo abastecimento da lista de combustiveis
+		c = new Combustivel(getCombustivel(),combustiveis.get(combustiveis.size()-1).getKilometragem()); 
+	}
+	return c;
 }
 //- Fim
 
