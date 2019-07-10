@@ -92,7 +92,7 @@ public String getCombustivel() {
 public void setCombustivel(String combustivel) throws DescricaoEmBrancoException,CombustivelIncompativelException {
 	if(combustivel.isEmpty())
 		throw new DescricaoEmBrancoException("Descrição em branco. Por favor insira um dado válido!");
-	else if(combustivel.equalsIgnoreCase("Álcool") ||
+	else if(combustivel.equalsIgnoreCase("Alcool") ||
 			combustivel.equalsIgnoreCase("Diesel") ||
 			combustivel.equalsIgnoreCase("Gasolina") ||
 			combustivel.equalsIgnoreCase("Flex"))
